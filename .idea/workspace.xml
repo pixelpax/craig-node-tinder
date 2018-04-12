@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3fe736e6-f0b6-4b7b-8f14-c5ca33fdd952" name="Default" comment="" />
+    <list default="true" id="3fe736e6-f0b6-4b7b-8f14-c5ca33fdd952" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/server/index.js" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" afterPath="$PROJECT_DIR$/yarn.lock" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -10,7 +15,40 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="14" lean-forward="false" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Genesys/nrepos/ember-engine-admin-ui/server/proxies/server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="274" column="17" lean-forward="false" selection-start-line="274" selection-start-column="11" selection-end-line="274" selection-end-column="17" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Genesys/nrepos/ember-engine-admin-ui/server/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -21,6 +59,10 @@
       <find>(.*),</find>
       <find>rome</find>
       <find>^([^&quot;]*)$</find>
+      <find>export</find>
+      <find>static</find>
+      <find>serveStatic</find>
+      <find>listen</find>
     </findStrings>
     <replaceStrings>
       <replace>,\n</replace>
@@ -45,6 +87,9 @@
         <option value="$PROJECT_DIR$/dbHelper.js" />
         <option value="$PROJECT_DIR$/craigs-node-app/server/package.json" />
         <option value="$PROJECT_DIR$/craigs-node-app/package.json" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/../Genesys/nrepos/ember-engine-admin-ui/server/index.js" />
+        <option value="$PROJECT_DIR$/server/index.js" />
       </list>
     </option>
   </component>
@@ -95,12 +140,6 @@
             <path>
               <item name="craigsNodeTinder" type="b2602c69:ProjectViewProjectNode" />
               <item name="craigsNodeTinder" type="462c0819:PsiDirectoryNode" />
-              <item name="craigs-node-app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="craigsNodeTinder" type="b2602c69:ProjectViewProjectNode" />
-              <item name="craigsNodeTinder" type="462c0819:PsiDirectoryNode" />
-              <item name="craigs-node-app" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -230,12 +269,12 @@
       <option name="presentableId" value="Default" />
       <updated>1523459419805</updated>
       <workItem from="1523459424515" duration="724000" />
-      <workItem from="1523484283212" duration="7569000" />
+      <workItem from="1523484283212" duration="8490000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8293000" />
+    <option name="totallyTimeSpent" value="9214000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="572" y="22" width="943" height="986" extended-state="0" />
@@ -324,6 +363,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="18" column="4" lean-forward="false" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/dbHelper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Genesys/nrepos/ember-engine-admin-ui/server/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Genesys/nrepos/ember-engine-admin-ui/server/proxies/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="274" column="17" lean-forward="false" selection-start-line="274" selection-start-column="11" selection-end-line="274" selection-end-column="17" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="14" lean-forward="false" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
           <folding />
         </state>
       </provider>
