@@ -51,8 +51,8 @@ module.exports = function(app) {
 
   app.get('/posts', async(req, res) => {
 
-    let pageNumber = req.query.pageNumber; // TODO: add a query param for page
-    let pageSize = req.query.pageSize; // TODO: add a query param for page
+    let pageNumber = Number(req.query.pageNumber); // TODO: add a query param for page
+    let pageSize = Number(req.query.pageSize); // TODO: add a query param for page
 
     try {
       let postPage = await PostManager.getPage(pageSize, pageNumber);
