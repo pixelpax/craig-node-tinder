@@ -32,7 +32,7 @@ module.exports = function(app) {
     }
 
     // TODO: Remove slice
-    listings = listings.slice(0, 3);
+    listings = listings.slice(0, 10);
 
     // TODO: Filter the list by date
 
@@ -51,40 +51,17 @@ module.exports = function(app) {
 
   app.get('/posts', async(req, res) => {
 
-    // TODO: Implement
-    res.status(200);
-    res.set('Content-Type', 'application/json');
-    res.send(JSON.stringify({
-      posts: [{
-            category: 'madison.craigslist.org',
-            date: '2018-04-10 20:48',
-            hasPic: true,
-            location: '(Madison)',
-            pid: '6557695822',
-            price: '$3000',
-            title: 'Dodge sprinter van',
-            url: 'https://madison.craigslist.org/cto/d/dodge-sprinter-van/6557695822.html',
-            complete: false,
-            trash: false,
-            id: 1,
-            _id: 'qWSjQvDXJG0NWHm6'
-          },
-        {
-          category: 'madison.craigslist.org',
-          date: '2018-04-10 20:48',
-          hasPic: true,
-          location: '(Madison)',
-          pid: '6557695822',
-          price: '$3000',
-          title: 'Dodge sprinter van',
-          url: 'https://madison.craigslist.org/cto/d/dodge-sprinter-van/6557695822.html',
-          complete: false,
-          trash: false,
-          id: 2,
-          _id: 'qWSjQvDXJG0NWHm6'
-        },
-      ]}
-    ))
+    let page = 1; // TODO: add a query param for page
+
+    try {
+      let postPage = await PostManager.getPage(2, page);
+      res.status(200);
+      res.set('Content-Type', 'application/json');
+      res.send(JSON.stringify({posts: postPage} ))
+    } catch (e) {
+      res.status(400);
+      res.send(err.message);
+    }
   });
 
   app.use(function(err, req, res, next) {

@@ -18,7 +18,7 @@
     "express": "^4.16.3",
     "morgan": "^1.9.0",
     "nedb": "^1.8.0",
-    "nedb-promises": "^1.2.0",
+    "nedb-promise": "^2.0.1",
     "node-craigslist": "^1.2.2"
   },
   "devDependencies": {
