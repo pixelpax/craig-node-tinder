@@ -65,6 +65,18 @@ module.exports = function(app) {
     }
   });
 
+  app.get('/details', async(req, res) => {
+    try {
+      let url = decodeURI(req.query.url);
+      let detail = await client.details({url});
+      res.status(200);
+      res.set('Content-Type', 'application/json');
+      res.send(JSON.stringify(detail))
+    } catch (e) {
+      console.log(e);
+    }
+  });
+
   app.use(function(err, req, res, next) {
     res.setStatus(400);
     res.send(err.message);

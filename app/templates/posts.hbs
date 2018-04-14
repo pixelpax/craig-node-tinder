@@ -8,7 +8,7 @@
   </thead>
   {{#each posts as |post|}}
     <tr>
-      <td><a href="{{post.url}}">{{post.title}}</a></td>
+      <td onmouseover={{action "getDetails" post.url}}><a href="{{post.url}}">{{post.title}}</a></td>
       <td>{{post.price}}</td>
     </tr>
   {{/each}}
@@ -16,6 +16,17 @@
 
 <button {{action "prevPage"}}>&lt;</button>
 <button {{action "nextPage"}}>&gt;</button>
+<span>Page: {{currentPage}}</span>
+
+{{#if currentDetails}}
+  <div>
+    <div>{{currentDetails.attributes}}</div>
+    <div>{{currentDetails.description}}</div>
+    {{#each currentDetails.images as |imagesrc|}}
+      <img height="100px" width="100px" src="{{imagesrc}}"/>
+    {{/each}}
+  </div>
+{{/if}}
 
 {{outlet}}
 

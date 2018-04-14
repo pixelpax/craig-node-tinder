@@ -7,6 +7,8 @@ export default Ember.Controller.extend({
   posts: [],
   currentPage: 1,
 
+  currentDetails: null,
+
   async _updateList() {
     let currentPage = this.get('currentPage');
     let newPosts = await this.store.query('post', {pageNumber: currentPage, pageSize: 3});
@@ -26,6 +28,13 @@ export default Ember.Controller.extend({
       let lastPage = this.get('currentPage');
       this.set('currentPage', lastPage - 1);
       return this._updateList();
+    },
+    async getDetails(url) {
+      let currentDetails = this.get('currentDetails');
+      if (!currentDetails || currentDetails.url !== url) {
+        let detailData = await Ember.$.get(`/details?url=${encodeURIComponent(url)}`)
+        this.set('currentDetails', detailData);
+      }
     }
   }
 });
