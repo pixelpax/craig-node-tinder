@@ -1,0 +1,18 @@
+
+<button {{action "updateList"}}>Update Posts</button>
+
+<table>
+  <thead>
+    <td>Title</td>
+    <td>Price</td>
+  </thead>
+  {{#each posts as |post|}}
+    <tr>
+      <td><a href="{{post.url}}">{{post.title}}</a></td>
+      <td>{{post.price}}</td>
+    </tr>
+  {{/each}}
+</table>
+
+{{outlet}}
+

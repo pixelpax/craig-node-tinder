@@ -21,7 +21,8 @@ class PostManager {
           db.update( {pid: post.pid},
             Object.assign(post, {
               complete: false,
-              trash: false
+              trash: false,
+              id: post.pid
             }), {upsert: true} )
         );
       });
