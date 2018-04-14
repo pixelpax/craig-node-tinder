@@ -6,10 +6,14 @@ export default Ember.Controller.extend({
 
   posts: [],
 
+  async _updateList() {
+    let newPosts = await this.store.query('post', {pageNumber: 1, pageSize: 3});
+    this.set('posts', newPosts);
+  },
+
   actions: {
     async updateList() {
-      let newPosts = await this.store.query('post', {});
-      this.set('posts', newPosts);
+      return this._updateList();
     }
   }
 });

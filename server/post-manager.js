@@ -57,5 +57,5 @@ module.exports = {PostManager};
 
 
 // db.find({}).then(records => console.log(records));
-PostManager.getPage(2, 1).then(page => console.log(page));
-PostManager.getPage(2, 2).then(page => console.log(page));
+// PostManager.getPage(2, 1).then(page => console.log(page));
+// PostManager.getPage(2, 2).then(page => console.log(page));

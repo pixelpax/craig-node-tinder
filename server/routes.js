@@ -51,10 +51,11 @@ module.exports = function(app) {
 
   app.get('/posts', async(req, res) => {
 
-    let page = 1; // TODO: add a query param for page
+    let pageNumber = req.query.pageNumber; // TODO: add a query param for page
+    let pageSize = req.query.pageSize; // TODO: add a query param for page
 
     try {
-      let postPage = await PostManager.getPage(2, page);
+      let postPage = await PostManager.getPage(pageSize, pageNumber);
       res.status(200);
       res.set('Content-Type', 'application/json');
       res.send(JSON.stringify({posts: postPage} ))
