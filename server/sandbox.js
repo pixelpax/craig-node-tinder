@@ -6,7 +6,7 @@ client = new craigslist.Client({
 client.search({
     city: 'madison',
     category: 'cta'
-}, 'sprinter high')
+}, 'sprinter')
     .then((listings) => {
         console.log(listings);
         return client.details(listings[0]);
