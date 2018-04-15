@@ -45,6 +45,11 @@ export default Ember.Controller.extend({
       } else {
         this.set('zoomIndex', index);
       }
+    },
+
+    onBookmark(post) {
+      post.toggleProperty('bookmarked');
+      Ember.$.put(`/post/${post.pid}/bookmark`, {bookmarked: post.get('bookmarked')})
     }
   }
 });

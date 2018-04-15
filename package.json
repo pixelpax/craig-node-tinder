@@ -15,6 +15,7 @@
     "test": "ember test"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "ember-truth-helpers": "^2.0.0",
     "express": "^4.16.3",
     "morgan": "^1.9.0",

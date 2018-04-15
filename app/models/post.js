@@ -6,5 +6,6 @@ export default DS.Model.extend({
   pid: DS.attr('boolean'),
   price: DS.attr('string'),
   title: DS.attr('string'),
-  url: DS.attr('string')
+  url: DS.attr('string'),
+  bookmarked: DS.attr('boolean')
 });

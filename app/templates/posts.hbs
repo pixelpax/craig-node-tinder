@@ -3,12 +3,15 @@
 
 <table>
   <thead>
+    <td></td>
+    <td>Bkmrkd</td>
     <td>Title</td>
     <td>Price</td>
   </thead>
   {{#each posts as |post|}}
     <tr>
       <button {{action "getDetails" post}}>Details</button>
+      <td>{{input type="checkbox" checked=post.bookmarked change=(action "onBookmark" post) }}</td>
       <td><a href="{{post.url}}">{{post.title}}</a></td>
       <td>{{post.price}}</td>
     </tr>

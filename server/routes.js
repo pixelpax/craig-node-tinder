@@ -1,6 +1,7 @@
 
 
 const express = require('express');
+const bodyParser = require('body-parser');
 // const app = express();
 // app.get('/', (req, res) => res.send('Hello World!'));
 
@@ -16,6 +17,8 @@ module.exports = function(app) {
   app.use(express.static('dist'));
   app.use(express.static('public'));
 
+  app.use(bodyParser.json())
+
   app.post('/fetch-posts', async (req, res) => {
 
     // TODO: add multiple cities
@@ -27,8 +30,9 @@ module.exports = function(app) {
         category: 'cta'
       }, 'sprinter');
     } catch (e) {
-      console.error('Couldnt pull postings from clist');
-      res.sendStatus(404);
+      res.status(404);
+      res.send('Couldnt pull postings from clist');
+      return;
     }
 
     // TODO: Remove slice
@@ -65,6 +69,30 @@ module.exports = function(app) {
     }
   });
 
+  // Not intended for frontend consumption
+  app.get('/posts/all', async(req, res) => {
+    try {
+      let posts = await PostManager.getAllPosts();
+      res.status(200);
+      res.set('Content-Type', 'application/json');
+      res.send(JSON.stringify({posts: posts} ))
+    } catch (e) {
+      res.status(400);
+      res.send(err.message);
+    }
+  });
+
+  // Not intended for frontend consumption
+  app.delete('/posts/all', async (req, res) => {
+    try {
+      await PostManager.removeAllPosts();
+      res.sendStatus(200);
+    } catch (e) {
+      res.status(400);
+      res.send(e.message);
+    }
+  });
+
   app.get('/details', async(req, res) => {
     try {
       let url = decodeURI(req.query.url);
@@ -74,6 +102,18 @@ module.exports = function(app) {
       res.send(JSON.stringify(detail))
     } catch (e) {
       console.log(e);
+    }
+  });
+
+  app.put('/posts/:pid/bookmark', async (req, res) => {
+    try {
+      let {bookmarked} = req.body;
+      let {pid} = req.params;
+      await PostManager.bookmark(bookmarked, pid);
+      res.sendStatus(200);
+    } catch (e) {
+      res.status(400);
+      res.send(e.message);
     }
   });
 
