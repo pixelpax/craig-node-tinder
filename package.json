@@ -15,6 +15,7 @@
     "test": "ember test"
   },
   "dependencies": {
+    "ember-truth-helpers": "^2.0.0",
     "express": "^4.16.3",
     "morgan": "^1.9.0",
     "nedb": "^1.8.0",

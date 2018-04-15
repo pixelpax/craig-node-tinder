@@ -8,7 +8,8 @@
   </thead>
   {{#each posts as |post|}}
     <tr>
-      <td onmouseover={{action "getDetails" post.url}}><a href="{{post.url}}">{{post.title}}</a></td>
+      <button {{action "getDetails" post}}>Details</button>
+      <td><a href="{{post.url}}">{{post.title}}</a></td>
       <td>{{post.price}}</td>
     </tr>
   {{/each}}
@@ -22,8 +23,8 @@
   <div>
     <div>{{currentDetails.attributes}}</div>
     <div>{{currentDetails.description}}</div>
-    {{#each currentDetails.images as |imagesrc|}}
-      <img height="100px" width="100px" src="{{imagesrc}}"/>
+    {{#each currentDetails.images as |imagesrc imageindex|}}
+      <img onclick={{action "zoomImage" imageindex}} class={{if (eq zoomIndex imageindex) "zoomed-image"}} height="100px" width="100px" src="{{imagesrc}}"/>
     {{/each}}
   </div>
 {{/if}}

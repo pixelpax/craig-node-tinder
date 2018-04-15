@@ -8,10 +8,12 @@ export default Ember.Controller.extend({
   currentPage: 1,
 
   currentDetails: null,
+  zoomIndex: null,
 
   async _updateList() {
+    const pageSize = 20;
     let currentPage = this.get('currentPage');
-    let newPosts = await this.store.query('post', {pageNumber: currentPage, pageSize: 3});
+    let newPosts = await this.store.query('post', {pageNumber: currentPage, pageSize});
     this.set('posts', newPosts);
   },
 
@@ -29,11 +31,19 @@ export default Ember.Controller.extend({
       this.set('currentPage', lastPage - 1);
       return this._updateList();
     },
-    async getDetails(url) {
+    async getDetails(post) {
+      let url = post.get('url');
       let currentDetails = this.get('currentDetails');
       if (!currentDetails || currentDetails.url !== url) {
         let detailData = await Ember.$.get(`/details?url=${encodeURIComponent(url)}`)
         this.set('currentDetails', detailData);
+      }
+    },
+    zoomImage(index) {
+      if (this.get('zoomIndex') === index) {
+        this.set('zoomIndex', null);
+      } else {
+        this.set('zoomIndex', index);
       }
     }
   }

@@ -1,0 +1,8 @@
+.zoomed-image {
+  z-index: 20;
+  position: absolute;
+  height: 600px;
+  width: 600px;
+  top: 30%;
+  left: 30%;
+}
