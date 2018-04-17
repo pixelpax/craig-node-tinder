@@ -57,9 +57,10 @@ module.exports = function(app) {
 
     let pageNumber = Number(req.query.pageNumber); // TODO: add a query param for page
     let pageSize = Number(req.query.pageSize); // TODO: add a query param for page
+    let filterByBookmarked = req.query.bookmarked;
 
     try {
-      let postPage = await PostManager.getPage(pageSize, pageNumber);
+      let postPage = await PostManager.getPage(pageSize, pageNumber, filterByBookmarked);
       res.status(200);
       res.set('Content-Type', 'application/json');
       res.send(JSON.stringify({posts: postPage} ))

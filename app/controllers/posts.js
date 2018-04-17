@@ -57,7 +57,11 @@ export default Ember.Controller.extend({
           post.toggleProperty('bookmarked');
         }
       });
-      // Ember.$.put(`/posts/${post.pid}/bookmark`, {bookmarked: post.get('bookmarked')})
+    },
+
+    async getBookmarked() {
+      let bookmarkedPosts = await this.store.query('post', {bookmarked: true});
+      this.set('posts', bookmarkedPosts);
     }
   }
 });

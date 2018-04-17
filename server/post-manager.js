@@ -60,16 +60,26 @@ class PostManager {
       return db.find({});
     }
 
+    static getAllBookmarkedPosts() {
+      return db.find({bookmarked: true});
+    }
+
     static async removeAllPosts() {
       return await db.remove({}, {multi: true});
     }
 
-    static async getPage(pageSize, pageNumber) {
-      return await db.cfind({})
-        .sort({ date: 1 })
-        .limit(pageSize)
-        .skip(pageSize * (pageNumber-1))
-        .exec();
+    static async getPage(pageSize, pageNumber, bookmarked) {
+        let findCursor;
+        if (bookmarked) {
+          findCursor = db.cfind({bookmarked: true});
+        } else {
+          findCursor = db.cfind({});
+        }
+        return await findCursor
+          .sort({ date: 1 })
+          .limit(pageSize)
+          .skip(pageSize * (pageNumber-1))
+          .exec();
     }
 
     static async getPost() {
