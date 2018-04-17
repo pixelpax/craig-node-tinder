@@ -48,8 +48,16 @@ export default Ember.Controller.extend({
     },
 
     onBookmark(post) {
-      post.toggleProperty('bookmarked');
-      Ember.$.put(`/post/${post.pid}/bookmark`, {bookmarked: post.get('bookmarked')})
+      Ember.$.ajax({
+        url: `/posts/${post.get('pid')}/bookmark`,
+        type: 'PUT',
+        data: JSON.stringify({bookmarked: !post.get('bookmarked')}),
+        contentType: "application/json",
+        success: (result) => {
+          post.toggleProperty('bookmarked');
+        }
+      });
+      // Ember.$.put(`/posts/${post.pid}/bookmark`, {bookmarked: post.get('bookmarked')})
     }
   }
 });
