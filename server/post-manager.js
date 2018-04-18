@@ -20,7 +20,7 @@ class PostManager {
         await db.insert({a: 1, b: 2});
     }
 
-    static async addPosts(posts) {
+    static async addPosts(posts, vanType) {
       let updatePromises = [];
       posts.forEach((post) => {
         updatePromises.push(
@@ -29,6 +29,7 @@ class PostManager {
               complete: false,
               trash: false,
               bookmarked: false,
+              type: vanType,
               id: post.pid
             })
           )
