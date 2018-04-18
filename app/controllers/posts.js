@@ -17,6 +17,27 @@ export default Ember.Controller.extend({
     this.set('posts', newPosts);
   },
 
+  async _getDetails(post, index) {
+    let url = post.get('url');
+    this.set('selectedIndex', index);
+    let currentDetails = this.get('currentDetails');
+    if (!currentDetails || currentDetails.url !== url) {
+      let detailData = await Ember.$.get(`/details?url=${encodeURIComponent(url)}`)
+      detailData.attributesString = JSON.stringify(detailData.attributes);
+      this.set('currentDetails', detailData);
+    }
+  },
+
+  selectUp() {
+    let nextIndex = this.get('selectedIndex') - 1;
+    this._getDetails(this.get('posts').toArray()[nextIndex], nextIndex);
+  },
+
+  selectDown() {
+    let nextIndex = this.get('selectedIndex') + 1;
+    this._getDetails(this.get('posts').toArray()[nextIndex], nextIndex);
+  },
+
   actions: {
     async updateList() {
       return this._updateList();
@@ -32,14 +53,7 @@ export default Ember.Controller.extend({
       return this._updateList();
     },
     async getDetails(post, index) {
-      let url = post.get('url');
-      this.set('selectedIndex', index);
-      let currentDetails = this.get('currentDetails');
-      if (!currentDetails || currentDetails.url !== url) {
-        let detailData = await Ember.$.get(`/details?url=${encodeURIComponent(url)}`)
-        detailData.attributesString = JSON.stringify(detailData.attributes);
-        this.set('currentDetails', detailData);
-      }
+      this._getDetails(post, index);
     },
     zoomImage(index) {
       if (this.get('zoomIndex') === index) {
