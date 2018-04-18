@@ -31,8 +31,9 @@ export default Ember.Controller.extend({
       this.set('currentPage', lastPage - 1);
       return this._updateList();
     },
-    async getDetails(post) {
+    async getDetails(post, index) {
       let url = post.get('url');
+      this.set('selectedIndex', index);
       let currentDetails = this.get('currentDetails');
       if (!currentDetails || currentDetails.url !== url) {
         let detailData = await Ember.$.get(`/details?url=${encodeURIComponent(url)}`)

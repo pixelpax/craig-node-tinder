@@ -6,3 +6,7 @@
   top: 30%;
   left: 30%;
 }
+
+.selected-row {
+  background-color: antiquewhite;
+}
