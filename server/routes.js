@@ -118,6 +118,18 @@ module.exports = function(app) {
     }
   });
 
+  app.put('/posts/:pid/trash', async (req, res) => {
+    try {
+      let {trash} = req.body;
+      let {pid} = req.params;
+      await PostManager.trashPost(trash, pid);
+      res.sendStatus(200);
+    } catch (e) {
+      res.status(400);
+      res.send(e.message);
+    }
+  });
+
   app.use(function(err, req, res, next) {
     res.setStatus(400);
     res.send(err.message);

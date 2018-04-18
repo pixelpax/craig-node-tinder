@@ -56,6 +56,14 @@ class PostManager {
         )
     }
 
+    static async trashPost(doTrash, pid) {
+      return await db.update( {pid},
+        {
+          $set: {trash: doTrash}
+        }
+      )
+    }
+
     static getAllPosts() {
       return db.find({});
     }
@@ -71,9 +79,9 @@ class PostManager {
     static async getPage(pageSize, pageNumber, bookmarked) {
         let findCursor;
         if (bookmarked) {
-          findCursor = db.cfind({bookmarked: true});
+          findCursor = db.cfind({bookmarked: true, trash: false});
         } else {
-          findCursor = db.cfind({});
+          findCursor = db.cfind({trash: false});
         }
         return await findCursor
           .sort({ date: 1 })

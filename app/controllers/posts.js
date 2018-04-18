@@ -36,6 +36,7 @@ export default Ember.Controller.extend({
       let currentDetails = this.get('currentDetails');
       if (!currentDetails || currentDetails.url !== url) {
         let detailData = await Ember.$.get(`/details?url=${encodeURIComponent(url)}`)
+        detailData.attributesString = JSON.stringify(detailData.attributes);
         this.set('currentDetails', detailData);
       }
     },
@@ -55,6 +56,18 @@ export default Ember.Controller.extend({
         contentType: "application/json",
         success: (result) => {
           post.toggleProperty('bookmarked');
+        }
+      });
+    },
+
+    onTrash(post) {
+      Ember.$.ajax({
+        url: `/posts/${post.get('pid')}/trash`,
+        type: 'PUT',
+        data: JSON.stringify({bookmarked: !post.get('trash')}),
+        contentType: "application/json",
+        success: (result) => {
+          post.toggleProperty('trash');
         }
       });
     },

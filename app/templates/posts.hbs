@@ -6,6 +6,7 @@
   <thead>
     <td></td>
     <td>Bkmrkd</td>
+    <td>Trsh</td>
     <td>Title</td>
     <td>Price</td>
   </thead>
@@ -13,6 +14,7 @@
     <tr>
       <button {{action "getDetails" post}}>Details</button>
       <td>{{input type="checkbox" checked=post.bookmarked change=(action "onBookmark" post) }}</td>
+      <td>{{input type="checkbox" checked=post.trash change=(action "onTrash" post) }}</td>
       <td><a href="{{post.url}}">{{post.title}}</a></td>
       <td>{{post.price}}</td>
     </tr>
@@ -25,8 +27,8 @@
 
 {{#if currentDetails}}
   <div>
-    <div>{{currentDetails.attributes}}</div>
     <div>{{currentDetails.description}}</div>
+    <div>{{currentDetails.attributesString}}</div>
     {{#each currentDetails.images as |imagesrc imageindex|}}
       <img onclick={{action "zoomImage" imageindex}} class={{if (eq zoomIndex imageindex) "zoomed-image"}} height="100px" width="100px" src="{{imagesrc}}"/>
     {{/each}}
