@@ -52,6 +52,7 @@ export default Ember.Controller.extend({
       this.set('currentPage', lastPage - 1);
       return this._updateList();
     },
+
     async getDetails(post, index) {
       this._getDetails(post, index);
     },

@@ -7,5 +7,6 @@ export default DS.Model.extend({
   price: DS.attr('string'),
   title: DS.attr('string'),
   url: DS.attr('string'),
-  bookmarked: DS.attr('boolean')
+  bookmarked: DS.attr('boolean'),
+  city: DS.attr('string')
 });
