@@ -22,9 +22,33 @@ export default Ember.Controller.extend({
     this.set('selectedIndex', index);
     let currentDetails = this.get('currentDetails');
     if (!currentDetails || currentDetails.url !== url) {
-      let detailData = await Ember.$.get(`/details?url=${encodeURIComponent(url)}`)
-      detailData.attributesString = JSON.stringify(detailData.attributes);
-      this.set('currentDetails', detailData);
+      try {
+        let detailData = await Ember.$.get(`/details?url=${encodeURIComponent(url)}`)
+        detailData.attributesString = JSON.stringify(detailData.attributes);
+        detailData.truncatedImages = detailData.images && detailData.images.slice(0,3);
+
+        // Get the year by hook or crook
+        if (detailData.attributes.year) {
+          post.set('year', detailData.attributes.year);
+        } else if (!post.get('year')) {
+          let matches = post.get('title').match(/(20\d\d)/) || detailData.description.match(/(20\d\d)/);
+          if (matches && matches.length) {
+            post.set('year', matches[0]);
+          }
+        }
+        if (detailData.attributes.odometer) {
+          post.set('miles', detailData.attributes.odometer);
+        } else {
+          let matches = detailData.description.match(/(\d*).?mi/i) || detailData.description.match(/odometer\D{,2}(\d*)/i);
+          if (matches && matches.length) {
+            post.set('miles', matches[0]);
+          }
+        }
+        this.set('currentDetails', detailData);
+        await post.save();
+      } catch (e) {
+        console.error(e);
+      }
     }
   },
 

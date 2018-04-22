@@ -1,5 +1,4 @@
 const craigslist = require('node-craigslist');
-const client = new craigslist.Client({});
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -59,6 +58,7 @@ module.exports = function(app) {
 
   app.post('/fetch-posts', async (req, res) => {
 
+    const client = new craigslist.Client({});
 
     let cities = [
       'chicago',
@@ -162,6 +162,7 @@ module.exports = function(app) {
 
   app.get('/details', async(req, res) => {
     try {
+      const client = new craigslist.Client({});
       let url = decodeURI(req.query.url);
       let detail = await client.details({url});
       res.status(200);
@@ -195,6 +196,17 @@ module.exports = function(app) {
       res.send(e.message);
     }
   });
+
+
+  app.put('/posts/:pid', async (req, res) => {
+    try {
+      await PostManager.update(req.body.post);
+      res.sendStatus(200);
+    } catch (e) {
+      res.status(400);
+      res.send(e.message);
+    }
+  })
 
   app.use(function(err, req, res, next) {
     res.setStatus(400);

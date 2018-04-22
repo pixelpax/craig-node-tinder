@@ -96,6 +96,10 @@ class PostManager {
         console.log(post);
     }
 
+    static async update(post) {
+        await db.update({pid: post.pid}, {$set: post})
+    }
+
     static async clearDb() {
       db.remove({}, {multi: true}).then(() => {
         db.find({}).then(records => console.log(records));

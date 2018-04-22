@@ -10,6 +10,8 @@
   <td>Title</td>
   <td>Price</td>
   <td>City</td>
+  <td>Year</td>
+  <td>Miles</td>
   </thead>
   {{#each posts as |post postindex|}}
     <tr class="{{if (eq postindex selectedIndex) 'selected-row'}}">
@@ -19,6 +21,8 @@
       <td><a href="{{post.url}}">{{post.title}}</a></td>
       <td>{{post.price}}</td>
       <td>{{post.city}}</td>
+      <td>{{post.year}}</td>
+      <td>{{post.miles}}</td>
     </tr>
   {{/each}}
 </table>
@@ -31,7 +35,7 @@
 <div>
   <pre>{{currentDetails.description}}</pre>
   <div>{{currentDetails.attributesString}}</div>
-  {{#each currentDetails.images as |imagesrc imageindex|}}
+  {{#each currentDetails.truncatedImages as |imagesrc imageindex|}}
     <img onclick={{action "zoomImage" imageindex}} class={{if (eq zoomIndex imageindex) "zoomed-image"}} height="100px" width="100px" src="{{imagesrc}}"/>
   {{/each}}
 </div>
