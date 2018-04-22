@@ -1,5 +1,9 @@
 // let Datastore = require('nedb') , db = new Datastore();
 
+const craigslist = require('node-craigslist');
+
+const rs = require('readline-sync');
+
 // TODO: May as well index by date
 const Datastore = require('nedb-promise');
 let db = Datastore({
@@ -9,7 +13,9 @@ let db = Datastore({
 
 db.ensureIndex({fieldName: 'pid', unique: true});
 
-
+function timeout(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 class PostManager {
 
     // private Post;
@@ -46,7 +52,7 @@ class PostManager {
           //   }, {upsert: true} )
         );
       });
-      return Promise.all(updatePromises);
+      return Promise.all(updatePromises).then(this.trashExpensive());
     }
 
     static async bookmark(turnon, pid) {
@@ -91,6 +97,35 @@ class PostManager {
           .exec();
     }
 
+    static trashExpensive() {
+      db.update({price: {$gt: 45000}}, {$set: {trash: true}});
+    }
+
+    static async getIncomplete() {
+      return await db.find({trash: false, complete: false})
+    }
+
+    static async fillInDetails() {
+      let incompleteListings = await this.getIncomplete();
+      const client = new craigslist.Client({});
+      let c = 0;
+      for(let listing of incompleteListings) {
+        if(c % 50 === 49) {
+          console.log('waiting for ip shift...')
+          await timeout(20000);
+        }
+        try {
+          await timeout(2000 + 2000 * Math.random());
+          let details = await client.details({url: listing.url});
+          await db.update({pid: listing.pid}, {$set: {details, complete: true}});
+          console.log('Added details for post: ', listing.pid)
+        } catch (e) {
+          console.error('Couldnt fetch details for post: ', listing.pid);
+        }
+        c += 1;
+      }
+    }
+
     static async getPost() {
         let post = await db.find({a:1});
         console.log(post);
@@ -109,6 +144,8 @@ class PostManager {
 
 module.exports = {PostManager};
 
+PostManager.fillInDetails()
+// db.cfind({complete: true}).limit(10).exec().then(console.log)
 
 // db.find({}).then(records => console.log(records));
 // PostManager.getPage(2, 1).then(page => console.log(page));

@@ -21,7 +21,8 @@
     "morgan": "^1.9.0",
     "nedb": "^1.8.0",
     "nedb-promise": "^2.0.1",
-    "node-craigslist": "^1.2.2"
+    "node-craigslist": "^1.2.2",
+    "readline-sync": "^1.4.9"
   },
   "devDependencies": {
     "babel-polyfill": "^6.26.0",
