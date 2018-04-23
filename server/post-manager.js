@@ -142,10 +142,13 @@ class PostManager {
     }
 }
 
+
 module.exports = {PostManager};
 
 PostManager.fillInDetails()
+db.count({complete: true}).then(console.log);
 // db.cfind({complete: true}).limit(10).exec().then(console.log)
+// db.cfind({}, {date: 1}).sort({date: -1}).limit(10).exec().then(console.log)
 
 // db.find({}).then(records => console.log(records));
 // PostManager.getPage(2, 1).then(page => console.log(page));
